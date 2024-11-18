@@ -16,7 +16,7 @@ def parse_arxiv_response(response_data):
         authors = [author.find("{http://www.w3.org/2005/Atom}name").text for author in entry.findall("{http://www.w3.org/2005/Atom}author")]
         published = entry.find("{http://www.w3.org/2005/Atom}published").text
         abstract = entry.find("{http://www.w3.org/2005/Atom}summary").text
-        categories = [category.attrib['term'] for category in entry.findall("{http://www.w3.org/2005/Atom}category")]
+        subjects = [category.attrib['term'] for category in entry.findall("{http://www.w3.org/2005/Atom}category")]
         journal_ref = entry.find("{http://arxiv.org/schemas/atom}journal_ref")  # Check for journal reference
         citation = journal_ref.text if journal_ref is not None else "N/A"
 
@@ -25,8 +25,8 @@ def parse_arxiv_response(response_data):
             'authors': authors,
             'published': published,
             'abstract': abstract,
-            'categories': ", ".join(categories),
-            'journal_ref': citation
+            'subjects': ", ".join(subjects),
+            'citation': citation
         })
     
     return entries
