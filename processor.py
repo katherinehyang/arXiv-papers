@@ -8,10 +8,10 @@ def process_data(parsed_data):
     df = pd.DataFrame(parsed_data)
     
     # Example: Clean data, remove missing or irrelevant columns if necessary
-    if 'title' in df.columns:
-        df.dropna(subset=['title'], inplace=True)  # Remove rows with missing titles
-    else:
-        print("No 'title' column in data.")
+    # if 'title' in df.columns:
+    #     df.dropna(subset=['title'], inplace=True)  # Remove rows with missing titles
+    # else:
+    #     print("No 'title' column in data.")
 
     
     # Save the cleaned data to a CSV file
@@ -19,7 +19,7 @@ def process_data(parsed_data):
     # df.to_csv(output_file, index=False)
     # print("Data processed and saved to 'data/processed_data.csv'")
 
-    output_path = 'data/processed_data.csv'
+    output_path = 'data/ai_data2.csv'
 
     if os.path.exists(output_path):
         # If the file exists, append to it without rewriting headers
