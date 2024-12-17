@@ -1,4 +1,5 @@
-# Parses through XML data
+# Parses through XML data to get: 
+# title, author, publish date, abstract, subjects, citation
 
 import xml.etree.ElementTree as ET
 
@@ -17,8 +18,7 @@ def parse_arxiv_response(response_data):
         published = entry.find("{http://www.w3.org/2005/Atom}published").text
         abstract = entry.find("{http://www.w3.org/2005/Atom}summary").text
         subjects = [category.attrib['term'] for category in entry.findall("{http://www.w3.org/2005/Atom}category")]
-        journal_ref = entry.find("{http://arxiv.org/schemas/atom}journal_ref")  # Check for journal reference
-        citation = journal_ref.text if journal_ref is not None else "N/A"
+        citation = entry.find("{http://www.w3.org/2005/Atom}id").text
 
         entries.append({
             'title': title,
